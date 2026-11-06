@@ -1,0 +1,57 @@
+<%- include("partials/header", { title: "VoltWise — Electric Vehicle Guide" }) %>
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow"><span class="pulse"></span> THE ELECTRIC MOBILITY GUIDE</div>
+    <h1>Make your next move<br><em>electric.</em></h1>
+    <p class="hero-text">Explore electric cars and scooters, compare the essentials, and find the right EV for your everyday journey.</p>
+    <form class="search hero-search" action="/vehicles" method="GET">
+      <span class="search-icon">⌕</span>
+      <input name="q" placeholder="Search a brand or vehicle..." aria-label="Search vehicles">
+      <button type="submit">Explore EVs <span>→</span></button>
+    </form>
+    <div class="hero-note"><span>✓</span> Explore · Compare · Make an informed choice</div>
+  </div>
+  <div class="hero-art">
+    <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+    <div class="hero-glow"></div>
+    <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=1200&q=85" alt="Modern electric vehicle charging">
+    <div class="floating-card"><span class="floating-icon">⚡</span><div><strong>Go electric</strong><small>Explore a smarter commute</small></div></div>
+    <div class="vertical-label">THE FUTURE IS IN MOTION</div>
+  </div>
+</section>
+
+<section class="stats">
+  <div><strong><%= vehicles.length %></strong><span>Vehicles to explore</span></div>
+  <div><strong>2</strong><span>Vehicle categories</span></div>
+  <div><strong>1</strong><span>Simple place to compare</span></div>
+</section>
+
+<section class="section">
+  <div class="section-heading">
+    <div><div class="eyebrow">START EXPLORING</div><h2>Popular electric rides</h2></div>
+    <a class="text-link" href="/vehicles">View all vehicles <span>→</span></a>
+  </div>
+  <div class="vehicle-grid">
+    <% featured.forEach(vehicle => { %>
+      <article class="vehicle-card">
+        <a href="/vehicles/<%= vehicle.id %>" class="vehicle-image">
+          <img src="<%= vehicle.image %>" alt="<%= vehicle.name %>" loading="lazy">
+          <span class="type-tag"><%= vehicle.type %></span>
+        </a>
+        <div class="vehicle-info">
+          <div class="vehicle-brand"><%= vehicle.brand %></div>
+          <h3><a href="/vehicles/<%= vehicle.id %>"><%= vehicle.name %></a></h3>
+          <div class="vehicle-metrics"><span><b><%= vehicle.range %></b> km range</span><span><b><%= vehicle.battery %></b> kWh</span></div>
+          <div class="vehicle-bottom"><strong>₹<%= vehicle.price.toLocaleString("en-IN") %>*</strong><a href="/vehicles/<%= vehicle.id %>">Details ↗</a></div>
+        </div>
+      </article>
+    <% }) %>
+  </div>
+</section>
+
+<section class="about-band" id="about">
+  <div class="about-symbol">⚡</div>
+  <div><div class="eyebrow">A CLEARER WAY TO CHOOSE</div><h2>Curious about EVs?<br>Start right here.</h2></div>
+  <p>Understand range, battery capacity and charging basics without the jargon. VoltWise brings key information together so you can research with confidence.</p>
+</section>
+<%- include("partials/footer") %>

@@ -1,0 +1,20 @@
+<%- include("partials/header", { title: vehicle.name + " — VoltWise" }) %>
+<section class="detail-wrap">
+  <a class="back-link" href="/vehicles">← Back to all vehicles</a>
+  <div class="detail-layout">
+    <div class="detail-image"><img src="<%= vehicle.image %>" alt="<%= vehicle.name %>"></div>
+    <div class="detail-copy">
+      <div class="eyebrow"><%= vehicle.brand %> · <%= vehicle.type %></div>
+      <h1><%= vehicle.name %></h1>
+      <p><%= vehicle.description %></p>
+      <div class="detail-price">₹<%= vehicle.price.toLocaleString("en-IN") %>* <small>Indicative starting price</small></div>
+      <div class="spec-grid">
+        <div><span>Claimed range</span><strong><%= vehicle.range %> km</strong></div>
+        <div><span>Battery capacity</span><strong><%= vehicle.battery %> kWh</strong></div>
+        <div class="wide"><span>Charging information</span><strong><%= vehicle.charging %></strong></div>
+      </div>
+      <p class="disclaimer">*Sample data for this project. Prices, range and charging specifications vary by model, variant, location and test conditions. Confirm current information with the manufacturer.</p>
+    </div>
+  </div>
+</section>
+<%- include("partials/footer") %>

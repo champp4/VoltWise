@@ -1,0 +1,35 @@
+<%- include("partials/header", { title: "Explore Electric Vehicles — VoltWise" }) %>
+<section class="page-intro">
+  <div class="eyebrow">THE EV DIRECTORY</div>
+  <h1>Find your electric ride.</h1>
+  <p>Browse the collection and compare the details that matter.</p>
+</section>
+<section class="section directory-section">
+  <form class="filter-bar" action="/vehicles" method="GET">
+    <div class="filter-search"><span>⌕</span><input name="q" value="<%= query %>" placeholder="Search by vehicle or brand"></div>
+    <select name="type" aria-label="Filter by vehicle type">
+      <option <%= type === "All" ? "selected" : "" %>>All</option>
+      <option <%= type === "Car" ? "selected" : "" %>>Car</option>
+      <option <%= type === "Scooter" ? "selected" : "" %>>Scooter</option>
+    </select>
+    <button type="submit" class="dark-button">Apply filters</button>
+  </form>
+  <div class="results-line"><span><b><%= vehicles.length %></b> vehicles found</span><a href="/vehicles">Clear filters ↗</a></div>
+  <% if (vehicles.length) { %>
+    <div class="vehicle-grid">
+      <% vehicles.forEach(vehicle => { %>
+        <article class="vehicle-card">
+          <a href="/vehicles/<%= vehicle.id %>" class="vehicle-image"><img src="<%= vehicle.image %>" alt="<%= vehicle.name %>" loading="lazy"><span class="type-tag"><%= vehicle.type %></span></a>
+          <div class="vehicle-info">
+            <div class="vehicle-brand"><%= vehicle.brand %></div><h3><a href="/vehicles/<%= vehicle.id %>"><%= vehicle.name %></a></h3>
+            <div class="vehicle-metrics"><span><b><%= vehicle.range %></b> km range</span><span><b><%= vehicle.battery %></b> kWh</span></div>
+            <div class="vehicle-bottom"><strong>₹<%= vehicle.price.toLocaleString("en-IN") %>*</strong><a href="/vehicles/<%= vehicle.id %>">Details ↗</a></div>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <div class="empty-state"><div>⌕</div><h2>No vehicles found</h2><p>Try another search or clear your filters.</p><a class="dark-button" href="/vehicles">Show all vehicles</a></div>
+  <% } %>
+</section>
+<%- include("partials/footer") %>

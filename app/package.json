@@ -1,0 +1,14 @@
+{
+  "name": "ev-platform",
+  "version": "1.0.0",
+  "description": "Electric vehicle information and comparison platform",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2"
+  }
+}
